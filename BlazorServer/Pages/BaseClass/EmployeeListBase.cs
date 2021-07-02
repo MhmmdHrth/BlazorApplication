@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlazorServer.Pages.BaseClass
@@ -10,15 +11,17 @@ namespace BlazorServer.Pages.BaseClass
     public class EmployeeListBase : ComponentBase
     {
         public IEnumerable<Employee> Employees { get; set; }
+        public bool isLoading = false;
 
-        protected override Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
-            this.LoadEmployees();
-            return base.OnInitializedAsync();
+            await Task.Run(this.LoadEmployees);
         }
 
         private void LoadEmployees()
         {
+            this.isLoading = true;
+            Thread.Sleep(3000);
             Employee e1 = new Employee
             {
                 Id = 1,
@@ -52,6 +55,7 @@ namespace BlazorServer.Pages.BaseClass
             };
 
             Employees = new List<Employee> { e1, e2 };
+            this.isLoading = false;
         }
     }
 }

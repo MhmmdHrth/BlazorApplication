@@ -10,12 +10,16 @@ namespace BlazorServer.Pages.BaseClass
 {
     public class EmployeeListBase : ComponentBase
     {
-        public IEnumerable<Employee> Employees { get; set; }
-        public bool isLoading = false;
+        protected IEnumerable<Employee> Employees { get; set; }
+        protected bool isLoading = false;
 
         protected override async Task OnInitializedAsync()
         {
-            await Task.Run(this.LoadEmployees);
+            //var task = new { this.LoadEmployees(), this.test() };
+            var task = Task.Factory.StartNew(() => this.LoadEmployees())
+                                   .ContinueWith(x => this.test());
+
+            await Task.WhenAll(task);
         }
 
         private void LoadEmployees()
@@ -56,6 +60,11 @@ namespace BlazorServer.Pages.BaseClass
 
             Employees = new List<Employee> { e1, e2 };
             this.isLoading = false;
+        }
+
+        private void test()
+        {
+
         }
     }
 }

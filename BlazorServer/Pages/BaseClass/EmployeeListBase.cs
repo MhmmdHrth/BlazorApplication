@@ -15,11 +15,10 @@ namespace BlazorServer.Pages.BaseClass
 
         protected override async Task OnInitializedAsync()
         {
-            //var task = new { this.LoadEmployees(), this.test() };
-            var task = Task.Factory.StartNew(() => this.LoadEmployees())
-                                   .ContinueWith(x => this.test());
-
-            await Task.WhenAll(task);
+            await Task.WhenAll(new []{
+                Task.Run(() => this.LoadEmployees()),
+                Task.Run(() => this.test())
+            });
         }
 
         private void LoadEmployees()

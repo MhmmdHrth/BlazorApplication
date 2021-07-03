@@ -1,3 +1,4 @@
+using BlazorServer.Services.Employee;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,11 @@ namespace BlazorServer
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            services.AddHttpClient<IEmployeeService, EmployeeService>(options =>
+            {
+                options.BaseAddress = new Uri("http://localhost:38840");
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

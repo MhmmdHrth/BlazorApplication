@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BlazorServer.Pages.BaseClass
+namespace BlazorServer.Pages.BaseClass.EmployeeBC
 {
     public class EmployeeListBase : ComponentBase
     {
@@ -19,24 +19,9 @@ namespace BlazorServer.Pages.BaseClass
 
         protected override async Task OnInitializedAsync()
         {
-            await Task.WhenAll(new[]{
-                Task.Run(() => this.LoadEmployees()),
-                Task.Run(() => this.test()),
-            });
-        }
-
-        private async Task<IEnumerable<Employee>> LoadEmployees()
-        {
             this.isLoading = true;
             Employees = (await this.EmployeeService.GetEmployees()).ToList();
             this.isLoading = false;
-
-            return this.Employees;
-        }
-
-        private void test()
-        {
-
         }
     }
 }

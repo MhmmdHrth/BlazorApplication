@@ -16,6 +16,12 @@ namespace BlazorServer.Services.Employee
             this.httpClient = httpClient;
         }
 
+        public async Task<EmployeeManagement.Models.Employee> GetEmployee(int id)
+        {
+            var response = await httpClient.GetFromJsonAsync<EmployeeManagement.Models.Employee>($"/api/employee/{id}");
+            return response;
+        }
+
         public async Task<IEnumerable<EmployeeManagement.Models.Employee>> GetEmployees()
         {
             var response = await httpClient.GetFromJsonAsync<EmployeeManagement.Models.Employee[]>("/api/employee/GetEmployees");

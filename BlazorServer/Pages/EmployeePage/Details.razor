@@ -1,0 +1,32 @@
+﻿@page "/employee/{Id}"
+@inherits BaseClass.EmployeeBC.Details
+
+@if (isLoading)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="row justify-content-center m-3">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Employee.FirstName @Employee.LastName</h1>
+                </div>
+
+                <div class="card-body text-center">
+                    <h4>Employee ID: @Employee.Id</h4>
+                    <h4>Employee Email: @Employee.Email</h4>
+                    <h4>Employee Department ID: @Employee.DepartmentId</h4>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="/" class="btn btn-primary">Back</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

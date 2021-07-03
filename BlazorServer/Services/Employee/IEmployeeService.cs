@@ -8,5 +8,6 @@ namespace BlazorServer.Services.Employee
     public interface IEmployeeService
     {
         Task<IEnumerable<EmployeeManagement.Models.Employee>> GetEmployees();
+        Task<EmployeeManagement.Models.Employee> GetEmployee(int id);
     }
 }

@@ -51,7 +51,8 @@ namespace EmployeeManagement.API.Models
 
         public async Task<Employee> GetEmployee(int Id)
         {
-            var result = await dbContext.Employees.FirstOrDefaultAsync(x => x.Id == Id);
+            var result = await dbContext.Employees.Include(x => x.Department)
+                                                  .FirstOrDefaultAsync(x => x.Id == Id);
 
             if(result != null)
             {

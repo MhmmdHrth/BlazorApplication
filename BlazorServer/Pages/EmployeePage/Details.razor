@@ -18,13 +18,18 @@ else
                     <h4>Employee ID: @Employee.Id</h4>
                     <h4>Employee Email: @Employee.Email</h4>
                     <h4>Employee Department ID: @Employee.DepartmentId</h4>
+                    <h4>Employee Department Name: @(Employee.Department != null ? Employee.Department.Name : "N/A")</h4>
+                    <button @onclick="@HideFooter">@(isShow ? "Hide Footer" : "Show Footer")</button>
                 </div>
 
-                <div class="card-footer text-center">
-                    <a href="/" class="btn btn-primary">Back</a>
-                    <a href="#" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                </div>
+                @if (isShow)
+                {
+                    <div class="card-footer text-center">
+                        <a href="/" class="btn btn-primary">Back</a>
+                        <a href="#" class="btn btn-primary">Edit</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                }
             </div>
         </div>
     </div>

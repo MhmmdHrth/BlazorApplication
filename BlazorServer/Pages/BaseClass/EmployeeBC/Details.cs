@@ -17,13 +17,27 @@ namespace BlazorServer.Pages.BaseClass.EmployeeBC
         public string Id { get; set; }
 
         protected Employee Employee { get; set; } = new Employee();
-        protected bool isLoading = false; 
+        protected bool isLoading = false;
+        
+        protected bool isShow { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             this.isLoading = true;
             this.Employee = await this.EmployeeService.GetEmployee(Int32.Parse(this.Id));
             this.isLoading = false;
+        }
+
+        protected void HideFooter()
+        {
+            if (isShow)
+            {
+                this.isShow = false;
+            }
+            else
+            {
+                this.isShow = true;
+            }
         }
     }
 }

@@ -20,6 +20,8 @@ namespace BlazorServer.Pages.BaseClass.EmployeeBC
         protected bool isLoading = false;
         
         protected bool isShow { get; set; }
+        protected string Name { get; set; } = "Ahmad";
+        public string Colour { get; set; } = "background-color:white";
 
         protected override async Task OnInitializedAsync()
         {

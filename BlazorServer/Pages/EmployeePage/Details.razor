@@ -20,6 +20,18 @@ else
                     <h4>Employee Department ID: @Employee.DepartmentId</h4>
                     <h4>Employee Department Name: @(Employee.Department != null ? Employee.Department.Name : "N/A")</h4>
                     <button @onclick="@HideFooter">@(isShow ? "Hide Footer" : "Show Footer")</button>
+
+                    <h4>Data Binding</h4>
+                    <input value="@Name" @onchange="@(x => Name = x.Value.ToString())" />
+                    <input @bind="@Name" />
+                    <input @bind="@Name" @bind:event="oninput"/>
+                    <p>@Name</p>
+
+                    <h4>Second Method</h4>
+                    <b>Colour: </b> <input @bind="Colour" />
+                    <div @bind-style="Colour" @bind-style:event="onchange">
+                        <h3>The background colour of this text changes</h3>
+                    </div>
                 </div>
 
                 @if (isShow)

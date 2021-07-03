@@ -33,11 +33,7 @@ namespace BlazorServer.Pages.BaseClass
                 Email = "sara@gmail.com",
                 DOB = new DateTime(1982, 9, 23),
                 Gender = Gender.Female,
-                Department = new Department
-                {
-                    Id = 1,
-                    Name = "JKE"
-                },
+                DepartmentId = 1,
                 PhotoPath = "images/rambut.jpg"
             };
 
@@ -49,11 +45,7 @@ namespace BlazorServer.Pages.BaseClass
                 Email = "harith@gmail.com",
                 DOB = new DateTime(1999, 9, 23),
                 Gender = Gender.Male,
-                Department = new Department
-                {
-                    Id = 2,
-                    Name = "JKA"
-                },
+                DepartmentId = 2,
                 PhotoPath = "images/gambar latest.JPG"
             };
 

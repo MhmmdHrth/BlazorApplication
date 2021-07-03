@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Models
 {
-    public class Employee
+    public class EmployeeVM
     {
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

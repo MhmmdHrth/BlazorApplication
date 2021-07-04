@@ -2,8 +2,10 @@
 @inherits BaseClass.EmployeeBC.Index
 
 <h3>Employee List</h3>
-<input type="checkbox" @bind="showFooter"/>
+<input type="checkbox" @bind="showFooter" />
 <label>@(showFooter ? "Hide Footer" : "Show Footer")</label>
+<br />
+<label>Selected Employees Count - @SelectedEmployeesCount</label>
 @if (isLoading)
 {
     <div class="spinner"></div>
@@ -13,7 +15,7 @@ else
     <div class="card-deck">
         @foreach (var employee in Employees)
         {
-            <List Employee="employee" ShowFooter="showFooter"></List>
+            <List Employee="employee" ShowFooter="showFooter" OnEmployeeSelection="EmployeeSelectionChanged"></List>
         }
     </div>
 }

@@ -17,12 +17,25 @@ namespace BlazorServer.Pages.BaseClass.EmployeeBC
         protected IEnumerable<Employee> Employees { get; set; }
         protected bool isLoading = false;
         protected bool showFooter  = true;
+        public int SelectedEmployeesCount { get; set; } = 0;
 
         protected override async Task OnInitializedAsync()
         {
             this.isLoading = true;
             Employees = (await this.EmployeeService.GetEmployees()).ToList();
             this.isLoading = false;
+        }
+
+        protected void EmployeeSelectionChanged(bool isSelected)
+        {
+            if (isSelected)
+            {
+                SelectedEmployeesCount++;
+            }
+            else
+            {
+                SelectedEmployeesCount--;
+            }
         }
     }
 }

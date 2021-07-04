@@ -1,4 +1,5 @@
-﻿using BlazorServer.Services.Employee;
+﻿using AutoMapper;
+using BlazorServer.Services.Employee;
 using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -16,16 +17,22 @@ namespace BlazorServer.Pages.BaseClass.EmployeeBC
         [Inject]
         protected IDepartmentService departmentService { get; set; }
 
+        [Inject]
+        protected IMapper Mapper { get; set; }
+
         [Parameter]
         public string Id { get; set; }
 
         public Employee Employee { get; set; } = new Employee();
+        public EmployeeVM EmployeeVM { get; set; } = new EmployeeVM();
         public List<Department> Departments { get; set; } = new List<Department>();
 
         protected override async Task OnInitializedAsync()
         {
             Employee = await employeeService.GetEmployee(Int32.Parse(Id));
-            Departments = (await departmentService.GetDepartments()).ToList(); 
+            Departments = (await departmentService.GetDepartments()).ToList();
+
+            Mapper.Map<Employee,EmployeeVM>(Employee, EmployeeVM);
         }
     }
 }

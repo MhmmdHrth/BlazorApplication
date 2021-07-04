@@ -1,7 +1,7 @@
 ﻿@page "/employee/edit/{Id}"
 @inherits BaseClass.EmployeeBC.Edit
 
-<EditForm Model="@Employee">
+<EditForm Model="@EmployeeVM" @onvalid>
     <DataAnnotationsValidator />
 
     <h3>Edit Employee</h3>
@@ -10,27 +10,27 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">First Name</label>
         <div class="col-10">
-            <InputText class="form-control" placeholder="First Name" @bind-Value="Employee.FirstName"></InputText>
-            <ValidationMessage For="@(() => Employee.FirstName)"></ValidationMessage>
+            <InputText class="form-control" placeholder="First Name" @bind-Value="EmployeeVM.FirstName"></InputText>
+            <ValidationMessage For="@(() => EmployeeVM.FirstName)"></ValidationMessage>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-2 col-form-label">Last Name</label>
         <div class="col-10">
-            <InputText class="form-control" placeholder="Last Name" @bind-Value="Employee.LastName"></InputText>
-            <ValidationMessage For="@(() => Employee.LastName)"></ValidationMessage>
+            <InputText class="form-control" placeholder="Last Name" @bind-Value="EmployeeVM.LastName"></InputText>
+            <ValidationMessage For="@(() => EmployeeVM.LastName)"></ValidationMessage>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-2 col-form-label">Email</label>
         <div class="col-10">
-            <InputText class="form-control" placeholder="Email Address" @bind-Value="Employee.Email"></InputText>
+            <InputText class="form-control" placeholder="Email Address" @bind-Value="EmployeeVM.Email"></InputText>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-2 col-form-label">Department</label>
         <div class="col-10">
-            <InputSelect class="form-control" @bind-Value="Employee.DepartmentId">
+            <InputSelect class="form-control" @bind-Value="EmployeeVM.DepartmentId">
                 @foreach (var department in Departments)
                 {
                     <option value="@department.Id">@department.Name</option>
@@ -41,7 +41,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">Gender</label>
         <div class="col-10">
-            <InputSelect class="form-control" @bind-Value="Employee.Gender">
+            <InputSelect class="form-control" @bind-Value="EmployeeVM.Gender">
                 @foreach (var gender in Enum.GetValues(typeof(Gender)))
                 {
                     <option value="@gender">@gender</option>
@@ -52,7 +52,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">Date Of Birth</label>
         <div class="col-10">
-            <InputDate @bind-Value="Employee.DOB" class="form-control"></InputDate>
+            <InputDate @bind-Value="EmployeeVM.DOB" class="form-control"></InputDate>
         </div>
     </div>
 </EditForm>

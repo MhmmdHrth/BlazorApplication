@@ -1,3 +1,4 @@
+using BlazorServer.Models;
 using BlazorServer.Services.Employee;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -26,6 +27,7 @@ namespace BlazorServer
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(options =>
             {

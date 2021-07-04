@@ -20,12 +20,16 @@ namespace BlazorServer.Pages.BaseClass.EmployeeBC
         [Inject]
         protected IMapper Mapper { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         [Parameter]
         public string Id { get; set; }
 
         public Employee Employee { get; set; } = new Employee();
         public EmployeeVM EmployeeVM { get; set; } = new EmployeeVM();
         public List<Department> Departments { get; set; } = new List<Department>();
+        public bool btnLoading { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -33,6 +37,25 @@ namespace BlazorServer.Pages.BaseClass.EmployeeBC
             Departments = (await departmentService.GetDepartments()).ToList();
 
             Mapper.Map<Employee,EmployeeVM>(Employee, EmployeeVM);
+        }
+
+        protected async Task Submit()
+        {
+            try
+            {
+                this.btnLoading = true;
+
+                await employeeService.UpdateEmployee(Int32.Parse(Id), EmployeeVM);
+                NavigationManager.NavigateTo("/");
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+            }
+            finally
+            {
+                this.btnLoading = false;
+            }
         }
     }
 }

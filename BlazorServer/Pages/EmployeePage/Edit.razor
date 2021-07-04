@@ -1,7 +1,7 @@
 ﻿@page "/employee/edit/{Id}"
 @inherits BaseClass.EmployeeBC.Edit
 
-<EditForm Model="@EmployeeVM" @onvalid>
+<EditForm Model="@EmployeeVM" OnValidSubmit="Submit">
     <DataAnnotationsValidator />
 
     <h3>Edit Employee</h3>
@@ -55,4 +55,12 @@
             <InputDate @bind-Value="EmployeeVM.DOB" class="form-control"></InputDate>
         </div>
     </div>
+    @if (btnLoading)
+    {
+        <button type="submit" disabled class="btn btn-outline-primary">Processing...</button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+    }
 </EditForm>

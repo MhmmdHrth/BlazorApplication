@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -26,6 +27,12 @@ namespace BlazorServer.Services.Employee
         {
             var response = await httpClient.GetFromJsonAsync<EmployeeManagement.Models.Employee[]>("/api/employee/GetEmployees");
             return response;
+        }
+
+        public async Task<EmployeeManagement.Models.Employee> UpdateEmployee(int id, EmployeeManagement.Models.EmployeeVM data)
+        {
+            var laila = await httpClient.PutAsJsonAsync<EmployeeVM>($"/api/employee/{id}", data);
+            return await httpClient.GetFromJsonAsync<EmployeeManagement.Models.Employee>($"/api/employee/{id}");
         }
     }
 }

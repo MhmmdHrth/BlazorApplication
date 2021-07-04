@@ -24,7 +24,7 @@ else
                     <h4>Data Binding</h4>
                     <input value="@Name" @onchange="@(x => Name = x.Value.ToString())" />
                     <input @bind="@Name" />
-                    <input @bind="@Name" @bind:event="oninput"/>
+                    <input @bind="@Name" @bind:event="oninput" />
                     <p>@Name</p>
 
                     <h4>Second Method</h4>

@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace BlazorServer.Pages.BaseClass.EmployeeBC
 {
-    public class EmployeeListBase : ComponentBase
+    public class Index : ComponentBase
     {
         [Inject]
         private IEmployeeService EmployeeService { get; set; }
 
         protected IEnumerable<Employee> Employees { get; set; }
         protected bool isLoading = false;
+        protected bool showFooter  = true;
 
         protected override async Task OnInitializedAsync()
         {

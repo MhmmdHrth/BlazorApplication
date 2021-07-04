@@ -1,0 +1,19 @@
+﻿@page "/"
+@inherits BaseClass.EmployeeBC.Index
+
+<h3>Employee List</h3>
+<input type="checkbox" @bind="showFooter"/>
+<label>@(showFooter ? "Hide Footer" : "Show Footer")</label>
+@if (isLoading)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="card-deck">
+        @foreach (var employee in Employees)
+        {
+            <List Employee="employee" ShowFooter="showFooter"></List>
+        }
+    </div>
+}

@@ -29,7 +29,11 @@ namespace BlazorServer
 
             services.AddHttpClient<IEmployeeService, EmployeeService>(options =>
             {
-                options.BaseAddress = new Uri("http://localhost:38840");
+                options.BaseAddress = new Uri("https://localhost:5002");
+            });
+            services.AddHttpClient<IDepartmentService, DepartmentService>(options =>
+            {
+                options.BaseAddress = new Uri("https://localhost:5002");
             });
         }
 
